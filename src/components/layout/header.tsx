@@ -7,107 +7,89 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, X } from 'lucide-react';
 import { useActiveSection } from '@/hooks/use-active-section';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const navLinks = [
   { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About Us' },
+  { id: 'about', label: 'About' },
   { id: 'products', label: 'Products' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'careers', label: 'Careers' },
+  { id: 'gallery', label: 'Showcase' },
   { id: 'contact', label: 'Contact' },
 ];
-
-const productList = ['Press Components', 'Fine Blanked Components', 'Machined Components', 'Insert Molded Components'];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isProductMenuOpen, setProductMenuOpen] = useState(false);
   
   const activeSection = useActiveSection(navLinks.map(link => link.id));
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const NavLink = ({ id, label, isDropdown = false }: { id: string, label: string, isDropdown?: boolean }) => {
-    const linkClasses = cn(
-      "font-headline font-medium transition-colors hover:text-primary",
-      activeSection === id ? "text-primary" : "text-foreground/80"
-    );
-    
-    if (isDropdown) {
-      return (
-        <div onMouseEnter={() => setProductMenuOpen(true)} onMouseLeave={() => setProductMenuOpen(false)}>
-          <Popover open={isProductMenuOpen} onOpenChange={setProductMenuOpen}>
-            <PopoverTrigger asChild>
-              <a href={`#${id}`} className={linkClasses}>{label}</a>
-            </PopoverTrigger>
-            <PopoverContent className="w-56 p-2 bg-background/95 backdrop-blur-sm" align="start">
-              <div className="grid">
-                {productList.map((product) => (
-                  <a key={product} href="#products" className="p-2 rounded-md hover:bg-secondary text-sm font-body">
-                    {product}
-                  </a>
-                ))}
-              </div>
-            </PopoverContent>
-          </Popover>
-        </div>
-      );
-    }
-
+  const NavLink = ({ id, label }: { id: string, label: string }) => {
     return (
-      <a href={`#${id}`} className={linkClasses} onClick={() => setMobileMenuOpen(false)}>
+      <a 
+        href={`#${id}`} 
+        className={cn(
+          "font-headline font-medium text-lg transition-all duration-300 relative",
+          activeSection === id ? "text-accent" : "text-primary/70 hover:text-primary",
+          "after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-accent after:bottom-[-4px] after:left-0 after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300",
+          activeSection === id ? "after:scale-x-100 after:origin-bottom-left" : "hover:after:scale-x-100 hover:after:origin-bottom-left"
+        )}
+        onClick={() => setMobileMenuOpen(false)}
+      >
         {label}
       </a>
     );
   };
   
   const navContent = (
-    <nav className="flex items-center gap-6 text-sm">
-      {navLinks.map(link => <NavLink key={link.id} id={link.id} label={link.label} isDropdown={link.id === 'products'} />)}
+    <nav className="flex items-center gap-8 text-sm">
+      {navLinks.map(link => <NavLink key={link.id} id={link.id} label={link.label} />)}
     </nav>
   );
 
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "bg-background/95 shadow-md backdrop-blur-sm" : "bg-transparent"
+      isScrolled ? "bg-background/80 shadow-2xl shadow-black/20 backdrop-blur-lg border-b border-white/5" : "bg-transparent"
     )}>
-      <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
+        <div className="flex h-24 items-center justify-between">
           <MneLogo />
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             {navContent}
           </div>
-          <div className="md:hidden">
+          <div className='hidden lg:block'>
+            <Button asChild className="bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-all duration-300 transform hover:scale-105">
+              <a href="#contact">Get a Quote</a>
+            </Button>
+          </div>
+          <div className="lg:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-8 w-8 text-accent" />
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-background p-6">
-                <div className="flex justify-between items-center mb-8">
+              <SheetContent side="right" className="w-full max-w-sm bg-background/90 backdrop-blur-xl border-l border-white/10 p-6">
+                <div className="flex justify-between items-center mb-12">
                   <MneLogo />
                   <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
-                    <X className="h-6 w-6" />
+                    <X className="h-8 w-8 text-accent" />
                     <span className="sr-only">Close menu</span>
                   </Button>
                 </div>
-                <nav className="flex flex-col gap-6 text-lg">
-                  {navLinks.map(link => (
-                    <a key={link.id} href={`#${link.id}`} className={cn("font-headline font-medium transition-colors hover:text-primary", activeSection === link.id ? "text-primary" : "text-foreground/80")} onClick={() => setMobileMenuOpen(false)}>
-                      {link.label}
-                    </a>
-                  ))}
+                <nav className="flex flex-col gap-8 text-2xl text-center">
+                   {navLinks.map(link => <NavLink key={link.id} id={link.id} label={link.label} />)}
+                   <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground font-bold" onClick={() => setMobileMenuOpen(false)}>
+                      <a href="#contact">Get a Quote</a>
+                    </Button>
                 </nav>
               </SheetContent>
             </Sheet>
