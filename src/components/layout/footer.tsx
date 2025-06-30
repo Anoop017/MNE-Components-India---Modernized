@@ -7,6 +7,7 @@ const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#products', label: 'Products' },
   { href: '#gallery', label: 'Showcase' },
+  { href: '#careers', label: 'Careers' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -42,7 +43,11 @@ export default function Footer() {
           <div>
             <h3 className="font-headline font-semibold text-primary text-lg">Get in Touch</h3>
             <address className="mt-4 space-y-3 text-muted-foreground not-italic">
-              <p>Plot No. 25, Sector-3, HSIIDC, Bawal, Rewari (Haryana)</p>
+              <p>
+                D-11, MIDC Satpur<br />
+                Nashik - 422007<br />
+                Maharashtra, India
+              </p>
               <p>Phone: <a href="tel:+919812039121" className="hover:text-accent">+91-9812039121</a></p>
               <p>Email: <a href="mailto:info@mnecomponents.com" className="hover:text-accent">info@mnecomponents.com</a></p>
             </address>

@@ -23,7 +23,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary">
+    <section id="contact" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <FadeIn className="text-center mb-16">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">Let's Build Together</h2>
@@ -43,7 +43,11 @@ export default function ContactSection() {
                   <Building className="h-8 w-8 text-accent mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-primary/90">Head Office & Works</h3>
-                    <p className='text-muted-foreground'>Plot No. 25, Sector-3, HSIIDC, Phase-1, Growth Centre Bawal Distt.- Rewari (Haryana)</p>
+                    <address className="text-muted-foreground not-italic mt-2">
+                      D-11, MIDC Satpur<br />
+                      Nashik - 422007<br />
+                      Maharashtra, India
+                    </address>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">

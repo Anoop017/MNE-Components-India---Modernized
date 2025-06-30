@@ -14,6 +14,7 @@ const navLinks = [
   { id: 'about', label: 'About' },
   { id: 'products', label: 'Products' },
   { id: 'gallery', label: 'Showcase' },
+  { id: 'careers', label: 'Careers' },
   { id: 'contact', label: 'Contact' },
 ];
 
