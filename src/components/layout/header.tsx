@@ -72,7 +72,8 @@ export default function Header() {
               <a href="#contact">Get a Quote</a>
             </Button>
           </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-1">
+            <ThemeToggleButton />
             <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -93,9 +94,6 @@ export default function Header() {
                    <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground font-bold" onClick={() => setMobileMenuOpen(false)}>
                       <a href="#contact">Get a Quote</a>
                     </Button>
-                    <div className="mt-4 flex justify-center">
-                      <ThemeToggleButton />
-                    </div>
                 </nav>
               </SheetContent>
             </Sheet>
