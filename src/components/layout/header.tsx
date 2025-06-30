@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, X } from 'lucide-react';
 import { useActiveSection } from '@/hooks/use-active-section';
+import { ThemeToggleButton } from '../theme-toggle-button';
 
 const navLinks = [
   { id: 'home', label: 'Home' },
@@ -56,7 +57,7 @@ export default function Header() {
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "bg-background/80 shadow-2xl shadow-black/20 backdrop-blur-lg border-b border-white/5" : "bg-transparent"
+      isScrolled ? "bg-background/80 shadow-2xl backdrop-blur-lg border-b" : "bg-transparent"
     )}>
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="flex h-24 items-center justify-between">
@@ -64,7 +65,8 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-6">
             {navContent}
           </div>
-          <div className='hidden lg:block'>
+          <div className='hidden lg:flex items-center gap-2'>
+            <ThemeToggleButton />
             <Button asChild className="bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-all duration-300 transform hover:scale-105">
               <a href="#contact">Get a Quote</a>
             </Button>
@@ -77,7 +79,7 @@ export default function Header() {
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full max-w-sm bg-background/90 backdrop-blur-xl border-l border-white/10 p-6">
+              <SheetContent side="right" className="w-full max-w-sm bg-background/90 backdrop-blur-xl border-l p-6">
                 <div className="flex justify-between items-center mb-12">
                   <MneLogo />
                   <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
@@ -90,6 +92,9 @@ export default function Header() {
                    <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground font-bold" onClick={() => setMobileMenuOpen(false)}>
                       <a href="#contact">Get a Quote</a>
                     </Button>
+                    <div className="mt-4 flex justify-center">
+                      <ThemeToggleButton />
+                    </div>
                 </nav>
               </SheetContent>
             </Sheet>

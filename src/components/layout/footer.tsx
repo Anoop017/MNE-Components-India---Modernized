@@ -12,7 +12,7 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-secondary/30 border-t border-white/10">
+    <footer id="footer" className="bg-secondary border-t">
       <div className="container mx-auto max-w-screen-xl px-4 py-16 md:px-8">
         <div className="grid grid-cols-1 gap-12 text-center md:grid-cols-3 md:text-left">
           <div className="flex flex-col items-center md:items-start">
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-16 border-t pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} MNE Components India Pvt. Ltd. All Rights Reserved.</p>
         </div>
       </div>

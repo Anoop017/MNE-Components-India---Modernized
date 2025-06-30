@@ -23,7 +23,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary/30">
+    <section id="contact" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <FadeIn className="text-center mb-16">
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">Let's Build Together</h2>
@@ -34,7 +34,7 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <FadeIn>
-            <Card className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-2xl p-4 lg:p-8 h-full">
+            <Card className="bg-card border rounded-2xl p-4 lg:p-8 h-full">
               <CardHeader>
                 <CardTitle className='font-headline text-3xl text-primary'>Contact Details</CardTitle>
               </CardHeader>
@@ -58,21 +58,21 @@ export default function ContactSection() {
             </Card>
           </FadeIn>
           
-          <FadeIn className="delay-200">
-            <Card className="bg-card/50 backdrop-blur-sm border border-white/10 rounded-2xl p-4 lg:p-8">
+          <FadeIn delay={200}>
+            <Card className="bg-card border rounded-2xl p-4 lg:p-8">
               <CardHeader>
                 <CardTitle className='font-headline text-3xl text-primary'>Send a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6 mt-4">
                   <div className="space-y-2">
-                    <Input id="name" placeholder="Your Name" required className="bg-input/50 h-12 text-lg border-white/10 focus:border-accent" />
+                    <Input id="name" placeholder="Your Name" required className="bg-input/50 h-12 text-lg focus:border-accent" />
                   </div>
                   <div className="space-y-2">
-                    <Input id="email" type="email" placeholder="Your Email" required className="bg-input/50 h-12 text-lg border-white/10 focus:border-accent" />
+                    <Input id="email" type="email" placeholder="Your Email" required className="bg-input/50 h-12 text-lg focus:border-accent" />
                   </div>
                   <div className="space-y-2">
-                    <Textarea id="message" placeholder="Your Message" rows={5} required className="bg-input/50 text-lg border-white/10 focus:border-accent" />
+                    <Textarea id="message" placeholder="Your Message" rows={5} required className="bg-input/50 text-lg focus:border-accent" />
                   </div>
                   <Button type="submit" size="lg" className="w-full bg-accent text-accent-foreground font-bold text-lg h-14 hover:bg-accent/90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-accent/20">
                     Send Message
